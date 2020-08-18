@@ -1,0 +1,17 @@
+{
+  "name": "gobarber",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "author": "thauandev <thauandepaula@icloud.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.7",
+    "@gobarber/eslint-config": "*"
+  }
+}
