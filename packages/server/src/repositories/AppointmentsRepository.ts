@@ -3,6 +3,11 @@ import { isEqual } from 'date-fns'
 
 import Appointment from '../models/Appointment'
 
+interface CreateAppointmentDTO {
+  provider: string
+  date: Date
+}
+
 class AppointmentsRepository {
   // o Private informa que appointments so será acessível pela classe AppointmentRepository
   private appointments: Appointment[]
@@ -28,9 +33,9 @@ class AppointmentsRepository {
   }
 
   // o metodo publico é acessivel por fora da classe(ao contrário do private)
-  public create(provider: string, date: Date): Appointment {
+  public create({ provider, date }: CreateAppointmentDTO): Appointment {
     /** O uuid não é declarado porque esse tratamento foi feito no model de Appointment */
-    const appointment = new Appointment(provider, date)
+    const appointment = new Appointment({ provider, date })
 
     this.appointments.push(appointment)
 
