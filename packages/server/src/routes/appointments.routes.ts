@@ -1,12 +1,10 @@
 import { Router } from 'express'
-import { uuid } from 'uuidv4'
-import { startOfHour, parseISO, isEqual } from 'date-fns'
+import { startOfHour, parseISO } from 'date-fns'
 
-import Appointment from '../models/Appointment'
+import AppointmentsRepository from '../repositories/AppointmentsRepository'
 
 const appointmentsRouter = Router()
-
-const appointments: Appointment[] = []
+const appointmentsRepository = new AppointmentsRepository()
 
 appointmentsRouter.post('/', (request, response) => {
   const { provider, date } = request.body
@@ -14,11 +12,9 @@ appointmentsRouter.post('/', (request, response) => {
   /** Pega o date da requisição e transaforma ele num elemento date com a hora inicial. */
   const parsedDate = startOfHour(parseISO(date))
 
-  /** Procura no array de appointments se tem data igual a recebida na requisição.
-      O metodo isEqual compara a data de cada appointment com a date da requisição para ver se são iguais.
-  */
-  const findAppointmentInSameDate = appointments.find(appointment =>
-    isEqual(parsedDate, appointment.date)
+  /** Utiliza o metodo findByDate do repositório para verificar se já tem um agendamento criado na data */
+  const findAppointmentInSameDate = appointmentsRepository.findByDate(
+    parsedDate
   )
 
   if (findAppointmentInSameDate) {
@@ -27,10 +23,7 @@ appointmentsRouter.post('/', (request, response) => {
       .json({ message: 'This appointment is already booked' })
   }
 
-  /** O uuid não é declarado porque esse tratamento foi feito no model de Appointment */
-  const appointment = new Appointment(provider, parsedDate)
-
-  appointments.push(appointment)
+  const appointment = appointmentsRepository.create(provider, parsedDate)
 
   return response.json(appointment)
 })
