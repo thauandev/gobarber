@@ -11,6 +11,10 @@ class AppointmentsRepository {
     this.appointments = []
   }
 
+  public all(): Appointment[] {
+    return this.appointments
+  }
+
   /** Recebe a data e retorna um appointment caso encontrar, se não retorna nulo.  */
   public findByDate(date: Date): Appointment | null {
     /** Procura no array de appointments se tem data igual a recebida na requisição.
