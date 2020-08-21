@@ -8,6 +8,9 @@
       "packages/*"
     ]
   },
+  "scripts": {
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
+  },
   "author": "thauandev <thauandepaula@icloud.com>",
   "license": "MIT",
   "devDependencies": {
