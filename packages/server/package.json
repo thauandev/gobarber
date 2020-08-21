@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev:server": "ts-node-dev --ignore-watch node_modules src/server.ts",
-    "typeorm": "ts-node-dev ../../node_modules/typeorm/cli.js --config ./src/database/index"
+    "typeorm": "ts-node-dev ../../node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "date-fns": "^2.0.0-beta.5",
