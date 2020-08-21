@@ -23,7 +23,8 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
+    'class-methods-use-this': 'off'
   },
   settings: {
     'import/resolver': {
