@@ -6,8 +6,12 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn
 } from 'typeorm'
+
+import User from './User'
 
 /** Quando coloca o Entity em cima da classe quer dizer que classe é um parametro
 que está passando para a entidade  */
@@ -19,7 +23,11 @@ class Appointment {
 
   /** Coluna de provider */
   @Column()
-  provider: string
+  provider_id: string
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'provider_id' })
+  provider: User
 
   /** Coluna date */
   @Column('time with time zone')
