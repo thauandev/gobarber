@@ -18,7 +18,9 @@ class CreateAppointmentService {
     const appointmentDate = startOfHour(date)
 
     /** Utiliza o metodo findByDate do repositório para verificar se já tem um agendamento criado na data */
-    const findAppointmentInSameDate = appointmentsRepository.findByDate(date)
+    const findAppointmentInSameDate = await appointmentsRepository.findByDate(
+      appointmentDate
+    )
 
     if (findAppointmentInSameDate) {
       throw Error('This appointment is already booked')

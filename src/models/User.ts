@@ -11,19 +11,23 @@ import {
 
 /** Quando coloca o Entity em cima da classe quer dizer que classe é um parametro
 que está passando para a entidade  */
-@Entity('appointments')
-class Appointment {
+@Entity('users')
+class User {
   /** Coluna da primarykey id */
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  /** Coluna de provider */
+  /** Coluna de nome */
   @Column()
-  provider: string
+  name: string
 
-  /** Coluna date */
-  @Column('time with time zone')
-  date: Date
+  /** Coluna email */
+  @Column()
+  email: string
+
+  /** Coluna password */
+  @Column()
+  password: string
 
   /** Coluna created_at */
   @CreateDateColumn()
@@ -34,4 +38,4 @@ class Appointment {
   updated_at: Date
 }
 
-export default Appointment
+export default User
