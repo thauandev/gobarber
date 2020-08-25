@@ -6,8 +6,8 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
-} from 'typeorm'
+  UpdateDateColumn,
+} from 'typeorm';
 
 /** Quando coloca o Entity em cima da classe quer dizer que classe é um parametro
 que está passando para a entidade  */
@@ -15,27 +15,27 @@ que está passando para a entidade  */
 class User {
   /** Coluna da primarykey id */
   @PrimaryGeneratedColumn('uuid')
-  id: string
+  id: string;
 
   /** Coluna de nome */
   @Column()
-  name: string
+  name: string;
 
   /** Coluna email */
   @Column()
-  email: string
+  email: string;
 
   /** Coluna password */
   @Column()
-  password: string
+  password: string;
 
   /** Coluna created_at */
   @CreateDateColumn()
-  created_at: Date
+  created_at: Date;
 
   /** Coluna updated_at */
   @UpdateDateColumn()
-  updated_at: Date
+  updated_at: Date;
 }
 
-export default User
+export default User;

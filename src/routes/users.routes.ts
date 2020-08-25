@@ -1,28 +1,27 @@
-import { Router } from 'express'
+import { Router } from 'express';
 
-import CreateUserService from '../services/CreateUserService'
+import CreateUserService from '../services/CreateUserService';
 
-const usersRouter = Router()
+const usersRouter = Router();
 
 usersRouter.post('/', async (request, response) => {
   try {
-    const { name, email, password } = request.body
+    const { name, email, password } = request.body;
 
-    const createUser = new CreateUserService()
+    const createUser = new CreateUserService();
 
     const user = await createUser.execute({
       name,
       email,
-      password
-    })
+      password,
+    });
 
-    return response.json({
-      name,
-      email
-    })
+    delete user.password;
+
+    return response.json(user);
   } catch (err) {
-    return response.status(400).json({ error: err.message })
+    return response.status(400).json({ error: err.message });
   }
-})
+});
 
-export default usersRouter
+export default usersRouter;
